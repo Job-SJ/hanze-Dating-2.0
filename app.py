@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect
+from flask import Flask, render_template, session, redirect, flash
 from forms import LoginForm
 from models import db, migrate, users, profiles
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -70,7 +70,7 @@ def inloggen():
             
             return redirect("/")
         else:
-            return "Verkeerd e-mailadres of wachtwoord."
+            flash('Verkeerd e-mailadres of wachtwoord', 'danger')
 
     return render_template("inloggen.html", form=form)
 
