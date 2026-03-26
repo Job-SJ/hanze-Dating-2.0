@@ -1,5 +1,5 @@
 from flask import Flask, render_template, session, redirect, flash
-from forms import LoginForm
+from forms import LoginForm, RegistratieForm
 from models import db, migrate, users, profiles
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
@@ -26,14 +26,15 @@ def home():
 
 @app.route("/registreren", methods=["GET", "POST"])
 def registreren():
-    form = LoginForm() # Je gebruikt LoginForm nu voor beide, dat is prima voor nu!
+    form = RegistratieForm()
 
     if form.validate_on_submit():
         # 1. Kijk of de gebruiker (email) al bestaat in de database
         bestaande_gebruiker = users.query.filter_by(gebruikersnaam=form.email.data).first()
         
         if bestaande_gebruiker:
-            return "Deze gebruiker bestaat al! Probeer in te loggen."
+            flash('Deze gebruiker bestaat al! Probeer in te loggen', 'warning')
+            return redirect("/registreren")
 
         # 2. Wachtwoord veilig hashen
         gehasht_wachtwoord = generate_password_hash(form.password.data)
