@@ -6,6 +6,7 @@ __pycache__/
 # Database (verberg de data, niet het bouwplan!)
 *.db
 *.sqlite3
+*.sqlite
 
 # Geheime sleutels
 .env
