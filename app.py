@@ -47,7 +47,7 @@ def registreren():
         gehasht_wachtwoord = generate_password_hash(form.password.data)
 
         # 3. Nieuwe gebruiker aanmaken (we gebruiken email als gebruikersnaam)
-        nieuwe_gebruiker = users(gebruikersnaam=form.email.data, wachtwoord=gehasht_wachtwoord)
+        nieuwe_gebruiker = users(gebruikersnaam=form.email.data, wachtwoord=gehasht_wachtwoord, leeftijd=form.leeftijd.data, geslacht=form.geslacht.data, bio=form.bio.data)
         
         # 4. Opslaan in de database
         db.session.add(nieuwe_gebruiker)
