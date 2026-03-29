@@ -4,20 +4,35 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-4 text-center">
-            
+
             <h1 class="mb-4">Registreren</h1>
-            
+
             <div class="form-container">
                 <form id="login-form" method="post">
                     {{ form.hidden_tag() }}
-                    
+
                     <p class="mb-3">{{ form.email.label }} <br> {{ form.email }}</p>
                     <p class="mb-3">{{ form.password.label}} <br> {{ form.password}}</p>
                     <p class="mb-3">{{ form.confirm_password.label}} <br> {{ form.confirm_password}}</p>
-                    <p class="mb-3">{{ form.leeftijd.label }} <br> {{ form.leeftijd }}</p>
-                    <p class="mb-3">{{ form.geslacht.label }} <br> {{ form.geslacht }}</p>
-                    <p class="mb-3">{{ form.bio.label }} <br> {{ form.bio }}</p>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            {{ form.leeftijd.label }} <br>
+                            {{ form.leeftijd(class="form-control") }}
+                        </div>
+
+                        <div class="col-md-6">
+                            {{ form.geslacht.label }} <br>
+                            {{ form.geslacht(class="form-control") }}
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.bio.label }} <br>
+                        {{ form.bio(class="form-control") }}
+                    </div>
+
                     <p class="mt-4">{{ form.submit }}</p>
+
                 </form>
             </div>
 
