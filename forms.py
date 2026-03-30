@@ -14,7 +14,7 @@ class RegistratieForm(FlaskForm):
     leeftijd = IntegerField('Leeftijd', validators=[InputRequired(), number_range(min=18, max=100)])
     geslacht = SelectField(
         'Geslacht',
-        choices=[
+        choices=[ #je hebt maar 2 keuzes natuurlijk
             ('man', 'Man'),
             ('vrouw', 'Vrouw'),
             ('anders', 'Anders')

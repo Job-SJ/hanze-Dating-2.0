@@ -2,13 +2,14 @@ from flask import Flask, render_template, session, redirect, flash
 from forms import LoginForm, RegistratieForm
 from models import db, migrate, users, profiles
 from werkzeug.security import generate_password_hash, check_password_hash
+from dotenv import load_dotenv
 import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 
-app.config["SECRET_KEY"] = "Ditissupergeheim"
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "database.sqlite")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
