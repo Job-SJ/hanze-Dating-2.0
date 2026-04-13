@@ -1,1 +1,22 @@
-Hier komen de profielen
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    {% for p in profielen %}
+    <div class="row">
+        <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ p.naam }}</h5>
+    <h6>{{ p.leeftijd }}</h6>
+    <p class="card-text">{{ p.bio }}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

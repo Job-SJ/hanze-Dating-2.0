@@ -30,7 +30,10 @@ def over_ons():
 
 @app.route("/profielen")
 def profielen():
-    return render_template("profielen.html")    
+
+    alle_profielen = profiles.query.all()
+
+    return render_template("profielen.html", profielen=alle_profielen)    
 
 @app.route("/registreren", methods=["GET", "POST"])
 def registreren():
