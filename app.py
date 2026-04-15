@@ -64,7 +64,7 @@ def like_profiel(profile_id):
     bestaande_like = Like.query.filter_by(user_id=current_user.id, profile_id=profile_id).first()
     
     if bestaande_like:
-        flash("Je hebt dit profiel al een hartje gegeven!", "info")
+        flash("Je hebt dit profiel al een like gegeven!", "info")
     else:
         nieuwe_like = Like(user_id=current_user.id, profile_id=profile_id)
         db.session.add(nieuwe_like)
@@ -83,6 +83,7 @@ def bewerk_profiel():
         profiel.naam = form.naam.data
         profiel.leeftijd = form.leeftijd.data
         profiel.geslacht = form.geslacht.data
+        profielfoto=form.profielfoto.data
         profiel.bio = form.bio.data
         
         db.session.commit()
@@ -129,6 +130,7 @@ def registreren():
             naam=form.naam.data,
             leeftijd=form.leeftijd.data,
             geslacht=form.geslacht.data,
+            profielfoto=form.profielfoto.data,
             bio=form.bio.data
         )
 

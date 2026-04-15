@@ -2,52 +2,55 @@
 
 {% block content %}
 <div class="container mt-5">
-    
+
     <a href="{{ url_for('profielen') }}" class="btn btn-outline-secondary mb-4">&larr; Terug naar alle singles</a>
 
     <div class="card shadow">
         <div class="row g-0">
-            
+
             <div class="col-md-5">
-                <img src="https://placehold.co/600x600?text={{ profiel.naam }}" class="img-fluid rounded-start h-100 object-fit-cover" alt="Profielfoto van {{ profiel.naam }}">
+                <img src="{{ profiel.profielfoto }}"
+                    class="img-fluid rounded-start h-100 object-fit-cover" alt="Profielfoto van {{ profiel.naam }}">
             </div>
-            
+
             <div class="col-md-7">
                 <div class="card-body p-5">
                     <h1 class="card-title display-5 fw-bold mb-1">{{ profiel.naam }}</h1>
                     <h4 class="text-muted mb-4">{{ profiel.leeftijd }} jaar &bull; {{ profiel.geslacht }}</h4>
-                    
+
                     <h5 class="fw-bold mt-4">Over mij</h5>
                     <p class="card-text lead">{{ profiel.bio }}</p>
-                    
+
                     <div class="mt-5">
                         <div class="mt-5">
-                            <p class="text-muted">Dit profiel heeft {{ Like.query.filter_by(profile_id=profiel.id).count() }} likes</p>
-    {% if current_user.id != profiel.gebruiker_id %}
-        
-        
-        <form action="{{ url_for('like_profiel', profile_id=profiel.id) }}" method="POST">
-            <button type="submit" class="btn btn-danger btn-lg px-4 me-2">
-                Like deze single
-            </button>
-        </form>
-    {% endif %}
-    
-    </div>
+                            <p class="text-muted">Dit profiel heeft {{
+                                Like.query.filter_by(profile_id=profiel.id).count() }} likes</p>
+                            {% if current_user.id != profiel.gebruiker_id %}
+
+
+                            <form action="{{ url_for('like_profiel', profile_id=profiel.id) }}" method="POST">
+                                <button type="submit" class="btn btn-danger btn-lg px-4 me-2">
+                                    Like deze single
+                                </button>
+                            </form>
+                            {% endif %}
+
+                        </div>
                         {% if current_user.id == profiel.gebruiker_id %}
-    <div class="mt-4 p-3 bg-light rounded border">
-        <h6 class="text-muted mb-3">Accountbeheer</h6>
-        <a href="{{ url_for('bewerk_profiel') }}" class="btn btn-warning me-2">Profiel Aanpassen</a>
-        
-        <form action="{{ url_for('verwijder_account') }}" method="POST" class="d-inline" onsubmit="return confirm('Weet je zeker dat je je account wilt verwijderen? Dit kan niet ongedaan worden gemaakt.');">
-            <button type="submit" class="btn btn-danger">Account Verwijderen</button>
-        </form>
-    </div>
-{% endif %}
+                        <div class="mt-4 p-3 bg-light rounded border">
+                            <h6 class="text-muted mb-3">Accountbeheer</h6>
+                            <a href="{{ url_for('bewerk_profiel') }}" class="btn btn-warning me-2">Profiel Aanpassen</a>
+
+                            <form action="{{ url_for('verwijder_account') }}" method="POST" class="d-inline"
+                                onsubmit="return confirm('Weet je zeker dat je je account wilt verwijderen? Dit kan niet ongedaan worden gemaakt.');">
+                                <button type="submit" class="btn btn-danger">Account Verwijderen</button>
+                            </form>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>

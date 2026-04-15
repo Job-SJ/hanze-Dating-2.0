@@ -30,15 +30,17 @@ class profiles(db.Model):
     naam: Mapped[str] = mapped_column(nullable=False)
     leeftijd: Mapped[int] = mapped_column(nullable=False)
     geslacht: Mapped[str] = mapped_column(nullable=False)
+    profielfoto: Mapped[str] = mapped_column(nullable=False)
     bio: Mapped[str] = mapped_column(nullable=False)
 
     gebruiker = relationship("users", back_populates="profiel")
 
-    def __init__(self, gebruiker_id, naam, leeftijd, geslacht, bio):
+    def __init__(self, gebruiker_id, naam, leeftijd, geslacht, profielfoto, bio):
         self.gebruiker_id = gebruiker_id
         self.naam = naam
         self.leeftijd = leeftijd
         self.geslacht = geslacht
+        self.profielfoto = profielfoto
         self.bio = bio
 
 class Like(db.Model):

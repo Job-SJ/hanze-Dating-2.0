@@ -32,6 +32,12 @@
                         </div>
 
                         <div class="mb-3">
+                            {{ form.profielfoto.label(class="form-label") }}
+                            {{ form.profielfoto(class="form-control", placeholder="Plak hier een URL naar een
+                            afbeelding") }}
+                        </div>
+
+                        <div class="mb-3">
                             {{ form.bio.label }} <br>
                             {{ form.bio(class="form-control") }}
                         </div>

@@ -21,8 +21,8 @@ class RegistratieForm(FlaskForm):
             ('anders', 'Anders')
         ]
     )
+    profielfoto = StringField('Foto URL', validators=[InputRequired()])
     bio = TextAreaField('Bio', validators=[Length(min=10, max=251)])
-    likes = IntegerField('likes')
 
     submit = SubmitField('Registreren', render_kw={"class":"btn btn-success"})
 
